@@ -55,6 +55,10 @@ const routes: Routes = [
     path: 'inputs',
     loadChildren: () => import('./pages/inputs/inputs.module').then( m => m.InputsPageModule)
   },
+  {
+    path: 'list',
+    loadChildren: () => import('./pages/list/list.module').then( m => m.ListPageModule)
+  },
 ];
 
 @NgModule({

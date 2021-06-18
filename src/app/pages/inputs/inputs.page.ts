@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputsPage implements OnInit {
 
+  public usuario = {
+    nombre:'',
+    email:'',
+    password:''
+  };
+
   constructor() { }
 
   ngOnInit() {
+  }
+  public enviar(){
+    console.log('Enviando: ', this.usuario);
   }
 
 }

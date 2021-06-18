@@ -73,9 +73,14 @@ export class InicioPage implements OnInit {
         redirecTo: '/infinite'
       },
       {
-        icon: 'infinite-outline',
+        icon: 'text-outline',
         name: 'Inputs',
         redirecTo: '/inputs'
+      },
+      {
+        icon: 'list-outline',
+        name: 'List',
+        redirecTo: '/list'
       }
       );
   }
