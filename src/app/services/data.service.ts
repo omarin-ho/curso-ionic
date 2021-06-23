@@ -19,4 +19,12 @@ export class DataService {
       return data;
     }));
   }
+  getMenuOptions(): Observable<any>{
+    return this.http.get(
+      '/assets/data/menu-data.json',
+      {}
+    ).pipe(map( data => {
+      return data;
+    }));
+  }
 }
