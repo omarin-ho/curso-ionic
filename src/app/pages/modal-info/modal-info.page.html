@@ -1,9 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>modalInfo</ion-title>
+    <ion-title>Modal Información</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div>
+    <label>Datos enviados: </label>
+    <p>{{firstName}}</p>
+    <p>{{lastName}}</p>
+    <p>{{middleInitial}}</p>
+    <p>{{nombre}}</p>
+  </div>
+  <ion-button expand="block" (click)="respuestaModalSinArgumentos()" color="danger">Salir Modal</ion-button>
+  <ion-button expand="block" (click)="respuestaModalConArgumentos()" color="warning">Salir Modal</ion-button>
 </ion-content>
