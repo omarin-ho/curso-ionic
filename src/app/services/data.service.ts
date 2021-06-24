@@ -19,9 +19,25 @@ export class DataService {
       return data;
     }));
   }
+  getAlbumnes(): Observable<any>{
+    return this.http.get(
+      'https://jsonplaceholder.typicode.com/albums',
+      {}
+    ).pipe(map( data => {
+      return data;
+    }));
+  }
   getMenuOptions(): Observable<any>{
     return this.http.get(
       '/assets/data/menu-data.json',
+      {}
+    ).pipe(map( data => {
+      return data;
+    }));
+  }
+  getSuperHeroes(): Observable<any>{
+    return this.http.get(
+      '/assets/data/superheroes.json',
       {}
     ).pipe(map( data => {
       return data;

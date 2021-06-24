@@ -83,6 +83,14 @@ const routes: Routes = [
     path: 'progress',
     loadChildren: () => import('./pages/progress/progress.module').then( m => m.ProgressPageModule)
   },
+  {
+    path: 'search',
+    loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
+  },
+  {
+    path: 'segment',
+    loadChildren: () => import('./pages/segment/segment.module').then( m => m.SegmentPageModule)
+  },
 ];
 
 @NgModule({
