@@ -78,5 +78,10 @@
     "icon": "tablet-portrait-outline",
     "name": "Popover",
     "redirecTo": "/popover"
+  },
+  {
+    "icon": "thermometer-outline",
+    "name": "Progress",
+    "redirecTo": "/progress"
   }
 ]

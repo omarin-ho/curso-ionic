@@ -22,7 +22,7 @@ export class PopoverPage implements OnInit {
       backdropDismiss: false
     });
     await popover.present();
-    
+
     const { data } = await popover.onWillDismiss();
     console.log('return', data);
   }
