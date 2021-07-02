@@ -1,0 +1,17 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>
+      {{noticia.source.name}}
+    </ion-card-subtitle>
+    <ion-card-title>
+      {{noticia.title}}
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-img [src]="noticia.urlToImage" *ngIf="noticia.urlToImage"></ion-img>
+    <br>
+    <p>
+      {{noticia.description}}
+    </p>
+  </ion-card-content>
+</ion-card>
