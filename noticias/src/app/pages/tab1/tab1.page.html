@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <app-noticias [articles]="noticias"></app-noticias>
+  <app-noticias [articles]="noticias" [blnFavoritos]="1"></app-noticias>
   <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"

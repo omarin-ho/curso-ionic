@@ -10,6 +10,7 @@ import {Articles} from "../../models/Articles";
 export class NoticiasComponent implements OnInit {
 
   @Input() articles: Array<Articles>;
+  @Input() blnFavoritos: number;
 
   constructor() {
     this.articles = new Array<Articles>();

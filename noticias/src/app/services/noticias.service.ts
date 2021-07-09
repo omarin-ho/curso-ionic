@@ -11,12 +11,17 @@ export class NoticiasService {
   public apiKey: string;
   public apiUrl: string;
   public country: string;
-  public page: number = 0;
+  public page: number;
+  public category: string;
+  public pageCategory: number;
 
   constructor(private http: HttpClient) {
     this.apiKey = 'fe3b338c29394e6ca611549cd4fcf7e3';
     this.apiUrl = 'https://newsapi.org/v2/';
     this.country = 'us';
+    this.page = 0;
+    this.category = '';
+    this.pageCategory = 0;
   }
 
   /**
@@ -40,8 +45,15 @@ export class NoticiasService {
    * @author Omar
    */
   public getTopHeadLinesCategory(categoria: string): Observable<any>{
+    if(this.category === categoria){
+      this.pageCategory++;
+    }else{
+      this.pageCategory = 1;
+      this.category = categoria;
+    }
+    console.log(this.pageCategory, categoria);
     return this.http.get(
-      this.apiUrl + 'top-headlines?country=' + this.country + '&category=' + categoria + '&apiKey='+ this.apiKey,
+      this.apiUrl + 'top-headlines?country=' + this.country + '&category=' + categoria + '&apiKey='+ this.apiKey + '&page=' + this.pageCategory,
       {}
     ).pipe(map( data => {
       console.log(data);

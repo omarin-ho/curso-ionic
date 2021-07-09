@@ -2,13 +2,18 @@
   <ion-card-header>
     <ion-card-subtitle>
       {{noticia.source.name}}
+      <div class="noticia-more">
+        <ion-button fill="clear" (click)="abrirMenu()">
+          <ion-icon name="menu-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </div>
     </ion-card-subtitle>
-    <ion-card-title>
+    <ion-card-title (click)="abrirURL(noticia.url)">
       {{noticia.title}}
     </ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-img [src]="noticia.urlToImage" *ngIf="noticia.urlToImage"></ion-img>
+    <ion-img [src]="noticia.urlToImage" *ngIf="noticia.urlToImage" (click)="abrirURL(noticia.url)"></ion-img>
     <br>
     <p>
       {{noticia.description}}

@@ -20,7 +20,6 @@ export class Tab1Page implements OnInit{
   }
 
   ngOnInit() {
-    this.presentLoading();
     this.cargarNoticias();
   }
 
@@ -30,13 +29,14 @@ export class Tab1Page implements OnInit{
    */
   public cargarNoticias(){
     return new Promise((resolve, reject )=>{
+      this.presentLoading();
       this.noticiasService.getTopHeadLines().subscribe(response =>{
         if(response.articles.length > 0 ){
           this.noticias = response.articles;
+          this.loading.dismiss();
           resolve(this.noticias);
         }
         reject();
-        this.loading.dismiss();
       });
     });
   }

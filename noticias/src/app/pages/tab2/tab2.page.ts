@@ -18,6 +18,7 @@ export class Tab2Page implements OnInit{
               public loadingController: LoadingController) {
     this.category = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
     this.segment = 'business';
+    this.presentLoading();
   }
   ngOnInit() {
     this.segment = this.category[0];
@@ -30,7 +31,9 @@ export class Tab2Page implements OnInit{
    * @author Omar
    */
   public obtenerCategoria(evento: any){
-    this.buscarNoticiasByCategoria(evento.detail.value);
+    this.presentLoading();
+    this.segment = evento.detail.value;
+    this.buscarNoticiasByCategoria(this.segment);
   }
 
   /**
@@ -39,10 +42,15 @@ export class Tab2Page implements OnInit{
    * @author Omar
    */
   buscarNoticiasByCategoria(categoria: string){
-    this.presentLoading();
-    this.noticiasService.getTopHeadLinesCategory(categoria).subscribe(response =>{
-      this.articulos = response.articles;
-      this.loading.dismiss();
+    return new Promise((resolve, reject )=> {
+      this.noticiasService.getTopHeadLinesCategory(categoria).subscribe(response => {
+        if(response.articles.length > 0 ){
+          this.articulos = response.articles;
+          resolve(this.articulos);
+        }
+        reject();
+        this.loading.dismiss();
+      });
     });
   }
 
@@ -59,6 +67,15 @@ export class Tab2Page implements OnInit{
     const { role, data } = await this.loading.onDidDismiss();
     console.log('Loading dismissed!');
   }
-
+  /**
+   * Carga mediante infiniteScroll
+   * @param eveno
+   * @author Omar
+   */
+  public loadData(eveno: any){
+    this.buscarNoticiasByCategoria(this.segment).finally(()=>{
+      eveno.target.complete();
+    });
+  }
 
 }
