@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Articles} from "../../models/Articles";
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-import {ActionSheetController, ToastController} from "@ionic/angular";
+import {ActionSheetController, Platform, ToastController} from "@ionic/angular";
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import {DataLocalService} from "../../services/data-local.service";
 
@@ -19,7 +19,8 @@ export class NoticiaComponent implements OnInit {
               public actionSheetController: ActionSheetController,
               private socialSharing: SocialSharing,
               private dataLocalService: DataLocalService,
-              public toastController: ToastController) {
+              public toastController: ToastController,
+              private platform: Platform) {
     this.noticia = new Articles();
     this.blnFavorito = 0;
   }
@@ -48,12 +49,7 @@ export class NoticiaComponent implements OnInit {
         text: 'Compartir',
         icon: 'share',
         handler: () => {
-          this.socialSharing.share(
-            this.noticia.title,
-            this.noticia.source.name,
-            null,
-            this.noticia.url
-          );
+         this.compartirNoticia();
         }
       }, {
         text: this.tituloFavorito,
@@ -97,6 +93,28 @@ export class NoticiaComponent implements OnInit {
         this.tituloFavorito = 'Añadir Favorito';
         break;
     }
+  }
+
+  compartirNoticia(){
+    if(this.platform.is('cordova')){
+      this.socialSharing.share(
+        this.noticia.title,
+        this.noticia.source.name,
+        null,
+        this.noticia.url
+      );
+    }else{
+      if (navigator.share) {
+        navigator.share({
+          title:this.noticia.title,
+          text: this.noticia.description,
+          url: this.noticia.url,
+        })
+          .then(() => console.log('Successful share'))
+          .catch((error) => console.log('Error sharing', error));
+      }
+    }
+
   }
 
   /**
