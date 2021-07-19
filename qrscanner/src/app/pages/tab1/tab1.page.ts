@@ -28,7 +28,8 @@ export class Tab1Page {
       }
     }).catch(err => {
       console.log('Error', err);
-      this.dataService.guardarRegistro('QRCode', 'https://www.google.com');
+      //this.dataService.guardarRegistro('QRCode', 'https://www.google.com');
+      this.dataService.guardarRegistro('QRCode', 'geo:40.73151796986687,-74.06087294062502');
     });
   }
 

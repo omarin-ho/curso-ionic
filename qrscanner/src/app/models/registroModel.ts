@@ -24,7 +24,7 @@ export class RegistroModel{
         this.icon = 'globe';
         break;
       case 'geo:':
-        this.type = "geo";
+        this.type = "geo:";
         this.icon = 'pin';
         break;
       default:
